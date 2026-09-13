@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Bounty } from '@/types/bounty';
 
@@ -38,7 +38,7 @@ export const BountyRangeFilter: React.FC<BountyRangeFilterProps> = ({ bounties, 
     router.push({ pathname: router.pathname, query: newQuery }, undefined, { shallow: true });
 
     if (onFilterChange) {
-      const filtered = bounties.filter(b => b.reward >= minBounty && b.reward <= maxBounty);
+      const filtered = bounties.filter(b => Number(b.reward) >= minBounty && Number(b.reward) <= maxBounty);
       onFilterChange(filtered);
     }
   }, [minBounty, maxBounty]);
